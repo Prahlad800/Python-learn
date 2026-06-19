@@ -38,4 +38,4 @@ print("ctc = ",ctc,"der =",her, "in hand",in_hand,"salaey in hand",salary_in_han
 
 
 
-# hra=(ctc/10)*100
+
