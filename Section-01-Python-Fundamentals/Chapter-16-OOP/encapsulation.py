@@ -1,57 +1,73 @@
-# Topic: Encapsulation
-# Explanation: Encapsulation hides internal details and exposes safe methods.
+"""Learning file for Encapsulation."""
 
-# Syntax:
-# class BankAccount:
-    def __init__(self):
-        self.__balance = 0
+# Topic Name: Encapsulation
+# Level: Intermediate
+# Encapsulation protects object state behind methods and properties.
+# Read the theory first, then run this file and modify examples.
 
-    def deposit(self, amount):
-        self.__balance += amount
+# Theory
+# Encapsulation protects object state behind methods and properties.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-    def get_balance(self):
-        return self.__balance
+# Syntax
+# self._protected
+# self.__private
+# @property
 
-account = BankAccount()
-account.deposit(100)
-print(account.get_balance())
+# Practice Programs
+# 1. Model a bank account class.
+# 2. Use inheritance for different employee types.
+# 3. Build a small task manager project.
 
-# Examples:
-# class BankAccount:
-    def __init__(self):
-        self.__balance = 0
+# Mini Project
+# Build a tiny program that uses encapsulation
+# with realistic sample data, validation, and printed output.
 
-    def deposit(self, amount):
-        self.__balance += amount
+# Interview Questions
+# Q1. What is self?
+# A1. self is the instance being operated on by an instance method.
+# Q2. What is encapsulation?
+# A2. Keeping data and behavior together while controlling access to internal state.
 
-    def get_balance(self):
-        return self.__balance
-
-account = BankAccount()
-account.deposit(100)
-print(account.get_balance())
-
-# Practice Programs:
-# 1. Create a class with a private attribute.
-2. Access it via a method.
-
-# Interview Questions:
-# Q: What does encapsulation protect?
-A: It protects data by controlling access.
-
-# Expected Output:
-# 100
-
+# Examples and practice implementations start below.
 class BankAccount:
-    def __init__(self):
-        self.__balance = 0
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self._balance = balance
+
+    @property
+    def balance(self):
+        return self._balance
 
     def deposit(self, amount):
-        self.__balance += amount
+        if amount <= 0:
+            raise ValueError("Deposit must be positive.")
+        self._balance += amount
 
-    def get_balance(self):
-        return self.__balance
 
-account = BankAccount()
-account.deposit(100)
-print(account.get_balance())
+def example_encapsulation():
+    account = BankAccount("Asha", 1000)
+    account.deposit(500)
+    print(account.owner, account.balance)
+
+
+def practice_account(owner, balance):
+    return BankAccount(owner, balance)
+
+
+def main():
+    print("--- Encapsulation ---")
+    example_encapsulation()
+    print("Practice balance:", practice_account("Ravi", 300).balance)
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Encapsulation ---
+# Asha 1500
+# Practice balance: 300
+# End Expected Output

@@ -1,36 +1,65 @@
-# Topic: Constructors
-# Explanation: The __init__ method initializes object attributes.
+"""Learning file for Constructors."""
 
-# Syntax:
-# class Student:
-    def __init__(self, name):
-        self.name = name
+# Topic Name: Constructors
+# Level: Intermediate
+# __init__ initializes object state when a new object is created.
+# Read the theory first, then run this file and modify examples.
 
-student = Student("Asha")
-print(student.name)
+# Theory
+# __init__ initializes object state when a new object is created.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Examples:
-# class Student:
-    def __init__(self, name):
-        self.name = name
+# Syntax
+# def __init__(self, value):
+#     self.value = value
 
-student = Student("Asha")
-print(student.name)
+# Practice Programs
+# 1. Model a bank account class.
+# 2. Use inheritance for different employee types.
+# 3. Build a small task manager project.
 
-# Practice Programs:
-# 1. Create a class with a constructor.
-2. Initialize name and age.
+# Mini Project
+# Build a tiny program that uses constructors
+# with realistic sample data, validation, and printed output.
 
-# Interview Questions:
-# Q: What is a constructor?
-A: It initializes an object at creation time.
+# Interview Questions
+# Q1. What is self?
+# A1. self is the instance being operated on by an instance method.
+# Q2. What is encapsulation?
+# A2. Keeping data and behavior together while controlling access to internal state.
 
-# Expected Output:
-# Asha
+# Examples and practice implementations start below.
+class Course:
+    def __init__(self, title, duration_hours):
+        self.title = title
+        self.duration_hours = duration_hours
 
-class Student:
-    def __init__(self, name):
-        self.name = name
+    def summary(self):
+        return f"{self.title}: {self.duration_hours} hours"
 
-student = Student("Asha")
-print(student.name)
+
+def example_constructor():
+    course = Course("Python Basics", 12)
+    print(course.summary())
+
+
+def practice_create_course(title):
+    return Course(title, 8)
+
+
+def main():
+    print("--- Constructors ---")
+    example_constructor()
+    print(practice_create_course("OOP").summary())
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Constructors ---
+# Python Basics: 12 hours
+# OOP: 8 hours
+# End Expected Output

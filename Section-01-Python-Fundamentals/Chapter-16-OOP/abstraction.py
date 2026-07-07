@@ -1,66 +1,66 @@
-# Topic: Abstraction
-# Explanation: Abstraction focuses on essential behavior and hides implementation details.
+"""Learning file for Abstraction."""
 
-# Syntax:
+# Topic Name: Abstraction
+# Level: Intermediate
+# Abstraction hides implementation details behind a simple interface.
+# Read the theory first, then run this file and modify examples.
+
+# Theory
+# Abstraction hides implementation details behind a simple interface.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
+
+# Syntax
 # from abc import ABC, abstractmethod
+# @abstractmethod
 
-class Shape(ABC):
-    @abstractmethod
-    def area(self):
-        pass
+# Practice Programs
+# 1. Model a bank account class.
+# 2. Use inheritance for different employee types.
+# 3. Build a small task manager project.
 
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
+# Mini Project
+# Build a tiny program that uses abstraction
+# with realistic sample data, validation, and printed output.
 
-    def area(self):
-        return self.width * self.height
+# Interview Questions
+# Q1. What is self?
+# A1. self is the instance being operated on by an instance method.
+# Q2. What is encapsulation?
+# A2. Keeping data and behavior together while controlling access to internal state.
 
-print(Rectangle(3, 4).area())
-
-# Examples:
-# from abc import ABC, abstractmethod
-
-class Shape(ABC):
-    @abstractmethod
-    def area(self):
-        pass
-
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-
-    def area(self):
-        return self.width * self.height
-
-print(Rectangle(3, 4).area())
-
-# Practice Programs:
-# 1. Create an abstract class.
-2. Implement it in a subclass.
-
-# Interview Questions:
-# Q: What is abstraction?
-A: It exposes only what is necessary and hides complexity.
-
-# Expected Output:
-# 12
-
+# Examples and practice implementations start below.
 from abc import ABC, abstractmethod
 
-class Shape(ABC):
+
+class Payment(ABC):
     @abstractmethod
-    def area(self):
-        pass
+    def pay(self, amount):
+        """Process a payment and return a status message."""
 
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
 
-    def area(self):
-        return self.width * self.height
+class CardPayment(Payment):
+    def pay(self, amount):
+        return f"Paid Rs.{amount} by card"
 
-print(Rectangle(3, 4).area())
+
+def checkout(payment_method, amount):
+    return payment_method.pay(amount)
+
+
+def main():
+    print("--- Abstraction ---")
+    payment = CardPayment()
+    print(checkout(payment, 500))
+    print("Concrete class:", isinstance(payment, Payment))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Abstraction ---
+# Paid Rs.500 by card
+# Concrete class: True
+# End Expected Output

@@ -1,24 +1,68 @@
-# Topic: Nested Dictionaries
-# Explanation: Nested dictionaries contain dictionaries inside dictionaries.
+"""Learning file for Nested Dictionaries."""
 
-# Syntax:
-# user = {"profile": {"name": "Asha", "age": 20}}
-print(user["profile"]["age"])
+# Topic Name: Nested Dictionaries
+# Level: Intermediate
+# Nested dictionaries model hierarchical data such as students, users, products, and configuration.
+# Read the theory first, then run this file and modify examples.
 
-# Examples:
-# user = {"profile": {"name": "Asha", "age": 20}}
-print(user["profile"]["age"])
+# Theory
+# Nested dictionaries model hierarchical data such as students, users, products, and configuration.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Practice Programs:
-# 1. Create a nested dictionary for a company.
-2. Print one nested value.
+# Syntax
+# students['S1']['marks']
+# for key, record in students.items(): ...
 
-# Interview Questions:
-# Q: What is a nested dictionary?
-A: It is a dictionary inside another dictionary.
+# Practice Programs
+# 1. Create a student report dictionary.
+# 2. Update inventory quantities safely.
+# 3. Read nested dictionary values with get().
 
-# Expected Output:
-# 20
+# Mini Project
+# Build a tiny program that uses nested dictionaries
+# with realistic sample data, validation, and printed output.
 
-user = {"profile": {"name": "Asha", "age": 20}}
-print(user["profile"]["age"])
+# Interview Questions
+# Q1. What must dictionary keys be?
+# A1. Keys must be hashable, such as strings, numbers, or tuples of immutable values.
+# Q2. What does get() prevent?
+# A2. It avoids KeyError by returning a default when the key is missing.
+
+# Examples and practice implementations start below.
+def example_nested_records():
+    students = {
+        "S1": {"name": "Asha", "marks": 92},
+        "S2": {"name": "Ravi", "marks": 85},
+    }
+    for roll_no, record in students.items():
+        print(roll_no, record["name"], record["marks"])
+
+
+def example_safe_access():
+    config = {"database": {"host": "localhost"}}
+    print("Host:", config.get("database", {}).get("host", "missing"))
+
+
+def practice_top_student(students):
+    return max(students.items(), key=lambda item: item[1]["marks"])
+
+
+def main():
+    print("--- Nested Dictionaries ---")
+    example_nested_records()
+    example_safe_access()
+    print("Top:", practice_top_student({"S1": {"marks": 70}, "S2": {"marks": 90}}))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Nested Dictionaries ---
+# S1 Asha 92
+# S2 Ravi 85
+# Host: localhost
+# Top: ('S2', {'marks': 90})
+# End Expected Output

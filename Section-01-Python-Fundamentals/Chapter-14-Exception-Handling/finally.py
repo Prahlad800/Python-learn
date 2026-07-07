@@ -1,31 +1,80 @@
-# Topic: finally Block
-# Explanation: The finally block runs regardless of whether an exception occurs.
+"""Learning file for finally Block."""
 
-# Syntax:
+# Topic Name: finally Block
+# Level: Beginner
+# finally runs cleanup code whether an exception happens or not.
+# Read the theory first, then run this file and modify examples.
+
+# Theory
+# finally runs cleanup code whether an exception happens or not.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
+
+# Syntax
 # try:
-    print("Hello")
-finally:
-    print("This always runs")
+#     open_resource()
+# finally:
+#     close_resource()
 
-# Examples:
-# try:
-    print("Hello")
-finally:
-    print("This always runs")
+# Practice Programs
+# 1. Handle invalid integer input.
+# 2. Raise an error for negative age.
+# 3. Create a custom exception for low account balance.
 
-# Practice Programs:
-# 1. Use finally with a division operation.
-2. Print a cleanup message.
+# Mini Project
+# Build a tiny program that uses finally block
+# with realistic sample data, validation, and printed output.
 
-# Interview Questions:
-# Q: When does finally run?
-A: It runs no matter what, even after an exception.
+# Interview Questions
+# Q1. Should you catch bare Exception everywhere?
+# A1. No. Catch specific exceptions so unrelated bugs are not hidden.
+# Q2. When should you raise exceptions?
+# A2. Raise when a function cannot complete its contract with the given data.
 
-# Expected Output:
-# Hello
-This always runs
+# Examples and practice implementations start below.
+def example_finally():
+    events = []
+    try:
+        events.append("open")
+        events.append("work")
+    finally:
+        events.append("close")
+    print("Events:", events)
 
-try:
-    print("Hello")
-finally:
-    print("This always runs")
+
+def example_finally_with_error():
+    try:
+        int("bad")
+    except ValueError:
+        print("Handled ValueError")
+    finally:
+        print("Cleanup completed")
+
+
+def practice_resource_log():
+    log = []
+    try:
+        log.append("resource acquired")
+    finally:
+        log.append("resource released")
+    return log
+
+
+def main():
+    print("--- finally Block ---")
+    example_finally()
+    example_finally_with_error()
+    print("Log:", practice_resource_log())
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- finally Block ---
+# Events: ['open', 'work', 'close']
+# Handled ValueError
+# Cleanup completed
+# Log: ['resource acquired', 'resource released']
+# End Expected Output

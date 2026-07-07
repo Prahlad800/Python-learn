@@ -1,66 +1,73 @@
-# Topic: Multiple Decorators
-# Explanation: You can apply more than one decorator to a function.
+"""Learning file for Multiple Decorators."""
 
-# Syntax:
-# def bold(func):
-    def wrapper():
-        return "<b>" + func() + "</b>"
+# Topic Name: Multiple Decorators
+# Level: Advanced
+# Multiple decorators stack wrappers and run in a predictable order.
+# Read the theory first, then run this file and modify examples.
+
+# Theory
+# Multiple decorators stack wrappers and run in a predictable order.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
+
+# Syntax
+# @outer
+# @inner
+# def function(): ...
+
+# Practice Programs
+# 1. Write a decorator that logs function calls.
+# 2. Create a timer decorator.
+# 3. Stack validation and formatting decorators.
+
+# Mini Project
+# Build a tiny program that uses multiple decorators
+# with realistic sample data, validation, and printed output.
+
+# Interview Questions
+# Q1. What does a decorator return?
+# A1. Usually a wrapper function that replaces or enhances the original function.
+# Q2. Why use functools.wraps?
+# A2. It preserves metadata such as the original function name and docstring.
+
+# Examples and practice implementations start below.
+from functools import wraps
+
+
+def add_prefix(function):
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        return "Result: " + function(*args, **kwargs)
+
     return wrapper
 
-def italic(func):
-    def wrapper():
-        return "<i>" + func() + "</i>"
+
+def add_suffix(function):
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        return function(*args, **kwargs) + "!"
+
     return wrapper
 
-@bold
-@italic
+
+@add_prefix
+@add_suffix
 def message():
-    return "Python"
+    return "success"
 
-print(message())
 
-# Examples:
-# def bold(func):
-    def wrapper():
-        return "<b>" + func() + "</b>"
-    return wrapper
+def main():
+    print("--- Multiple Decorators ---")
+    print(message())
+    print("Order: function -> add_suffix -> add_prefix")
 
-def italic(func):
-    def wrapper():
-        return "<i>" + func() + "</i>"
-    return wrapper
 
-@bold
-@italic
-def message():
-    return "Python"
+if __name__ == "__main__":
+    main()
 
-print(message())
-
-# Practice Programs:
-# 1. Apply two simple decorators.
-2. Show the order of execution.
-
-# Interview Questions:
-# Q: How do multiple decorators work?
-A: They are applied from the bottom up.
-
-# Expected Output:
-# <b><i>Python</i></b>
-
-def bold(func):
-    def wrapper():
-        return "<b>" + func() + "</b>"
-    return wrapper
-
-def italic(func):
-    def wrapper():
-        return "<i>" + func() + "</i>"
-    return wrapper
-
-@bold
-@italic
-def message():
-    return "Python"
-
-print(message())
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Multiple Decorators ---
+# Result: success!
+# Order: function -> add_suffix -> add_prefix
+# End Expected Output

@@ -1,51 +1,75 @@
-# Topic: Asyncio Mini Project
-# Explanation: Create a small asynchronous project with multiple tasks.
+"""Learning file for Asyncio Mini Project."""
 
-# Syntax:
-# import asyncio
+# Topic Name: Asyncio Mini Project
+# Level: Advanced
+# An asyncio mini project combines coroutines, tasks, gather, and structured result handling.
+# Read the theory first, then run this file and modify examples.
 
-async def task(name):
-    await asyncio.sleep(0.1)
-    return f"Done {name}"
+# Theory
+# An asyncio mini project combines coroutines, tasks, gather, and structured result handling.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-async def main():
-    results = await asyncio.gather(task("A"), task("B"))
-    print(results)
+# Syntax
+# async def fetch_user(user_id):
+# await asyncio.gather(*tasks)
 
-asyncio.run(main())
+# Practice Programs
+# 1. Create coroutines for fake API calls.
+# 2. Run multiple tasks with gather.
+# 3. Build a small async status checker.
 
-# Examples:
-# import asyncio
+# Mini Project
+# Build a tiny program that uses asyncio mini project
+# with realistic sample data, validation, and printed output.
 
-async def task(name):
-    await asyncio.sleep(0.1)
-    return f"Done {name}"
+# Interview Questions
+# Q1. What is a coroutine?
+# A1. A function declared with async def that can pause with await.
+# Q2. When is asyncio useful?
+# A2. It is useful for many concurrent I/O tasks without creating many threads.
 
-async def main():
-    results = await asyncio.gather(task("A"), task("B"))
-    print(results)
-
-asyncio.run(main())
-
-# Practice Programs:
-# 1. Create three async tasks.
-2. Gather them and print the results.
-
-# Interview Questions:
-# Q: How does asyncio help in real projects?
-A: It improves efficiency for network and I/O-heavy applications.
-
-# Expected Output:
-# ['Done A', 'Done B']
-
+# Examples and practice implementations start below.
 import asyncio
 
-async def task(name):
-    await asyncio.sleep(0.1)
-    return f"Done {name}"
 
-async def main():
-    results = await asyncio.gather(task("A"), task("B"))
-    print(results)
+async def check_service(name, delay, online=True):
+    await asyncio.sleep(delay)
+    return {"service": name, "online": online}
 
-asyncio.run(main())
+
+async def run_health_check():
+    checks = [
+        check_service("api", 0.01, True),
+        check_service("database", 0.02, True),
+        check_service("cache", 0.01, False),
+    ]
+    return await asyncio.gather(*checks)
+
+
+def summarize(results):
+    online = [item["service"] for item in results if item["online"]]
+    offline = [item["service"] for item in results if not item["online"]]
+    return {"online": online, "offline": offline}
+
+
+async def main_async():
+    print("--- Asyncio Mini Project ---")
+    results = await run_health_check()
+    print("Results:", results)
+    print("Summary:", summarize(results))
+
+
+def main():
+    asyncio.run(main_async())
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Asyncio Mini Project ---
+# Results: [{'service': 'api', 'online': True}, {'service': 'database', 'online': True}, {'service': 'cache', 'online': False}]
+# Summary: {'online': ['api', 'database'], 'offline': ['cache']}
+# End Expected Output

@@ -1,25 +1,64 @@
-# Topic: Your First Python Program
-# Explanation: A Python program runs line by line. The print() function shows output on the screen.
+"""Learning file for First Python Program."""
 
-# Syntax:
-# print("My first program")
+# Topic Name: First Python Program
+# Level: Beginner
+# A first program teaches execution order, string literals, variables, and the main guard used in real projects.
+# Read the theory first, then run this file and modify examples.
 
-# Examples:
-# print("I am learning Python")
-print(15 * 2)
+# Theory
+# A first program teaches execution order, string literals, variables, and the main guard used in real projects.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Practice Programs:
-# 1. Print your favorite color.
-2. Print the result of 12 + 8.
+# Syntax
+# print('Hello, World!')
+# message = 'Welcome'
+# def main(): ...
 
-# Interview Questions:
-# Q: What does print() do?
-A: It displays information to the console.
+# Practice Programs
+# 1. Print your name, city, and learning goal.
+# 2. Create a short script with a main() function.
+# 3. Add comments that explain the purpose of each line.
 
-# Expected Output:
-# My first program
-I am learning Python
-30
+# Mini Project
+# Build a tiny program that uses first python program
+# with realistic sample data, validation, and printed output.
 
-print("I am learning Python")
-print(15 * 2)
+# Interview Questions
+# Q1. Why is Python popular?
+# A1. It is readable, versatile, has a huge ecosystem, and supports many programming styles.
+# Q2. What does the main guard do?
+# A2. It lets code run only when the file is executed directly, not when imported.
+
+# Examples and practice implementations start below.
+def greet(name):
+    return f"Hello, {name}! Welcome to Python."
+
+
+def example_variables():
+    language = "Python"
+    year = 1991
+    print(f"{language} first appeared in {year}.")
+
+
+def practice_profile_card(name, course):
+    return f"Student: {name} | Course: {course}"
+
+
+def main():
+    print("--- First Python Program ---")
+    print(greet("Learner"))
+    example_variables()
+    print(practice_profile_card("Asha", "Python Basics"))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- First Python Program ---
+# Hello, Learner! Welcome to Python.
+# Python first appeared in 1991.
+# Student: Asha | Course: Python Basics
+# End Expected Output

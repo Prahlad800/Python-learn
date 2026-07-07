@@ -1,45 +1,73 @@
-# Topic: Inheritance
-# Explanation: Inheritance allows one class to reuse another class.
+"""Learning file for Inheritance."""
 
-# Syntax:
-# class Animal:
-    def speak(self):
-        print("Animal")
+# Topic Name: Inheritance
+# Level: Intermediate
+# Inheritance shares behavior from a parent class to child classes.
+# Read the theory first, then run this file and modify examples.
 
-class Dog(Animal):
-    pass
+# Theory
+# Inheritance shares behavior from a parent class to child classes.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-my_dog = Dog()
-my_dog.speak()
+# Syntax
+# class Child(Parent):
+#     pass
+# super().__init__()
 
-# Examples:
-# class Animal:
-    def speak(self):
-        print("Animal")
+# Practice Programs
+# 1. Model a bank account class.
+# 2. Use inheritance for different employee types.
+# 3. Build a small task manager project.
 
-class Dog(Animal):
-    pass
+# Mini Project
+# Build a tiny program that uses inheritance
+# with realistic sample data, validation, and printed output.
 
-my_dog = Dog()
-my_dog.speak()
+# Interview Questions
+# Q1. What is self?
+# A1. self is the instance being operated on by an instance method.
+# Q2. What is encapsulation?
+# A2. Keeping data and behavior together while controlling access to internal state.
 
-# Practice Programs:
-# 1. Create a parent class and child class.
-2. Call a parent method from the child.
+# Examples and practice implementations start below.
+class Employee:
+    def __init__(self, name):
+        self.name = name
 
-# Interview Questions:
-# Q: What is inheritance?
-A: It enables code reuse through parent-child relationships.
+    def work(self):
+        return f"{self.name} works"
 
-# Expected Output:
-# Animal
 
-class Animal:
-    def speak(self):
-        print("Animal")
+class Developer(Employee):
+    def work(self):
+        return f"{self.name} writes code"
 
-class Dog(Animal):
-    pass
 
-my_dog = Dog()
-my_dog.speak()
+def example_inheritance():
+    employee = Employee("Asha")
+    developer = Developer("Ravi")
+    print(employee.work())
+    print(developer.work())
+
+
+def practice_team_report(team):
+    return [member.work() for member in team]
+
+
+def main():
+    print("--- Inheritance ---")
+    example_inheritance()
+    print("Team:", practice_team_report([Developer("Meera")]))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Inheritance ---
+# Asha works
+# Ravi writes code
+# Team: ['Meera writes code']
+# End Expected Output

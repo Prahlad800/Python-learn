@@ -1,68 +1,60 @@
-k = None
-a = 5
-b = 6
-print('Program exe')
-a = True + 4
-b = False + 10
+"""Learning file for Casting Practice."""
 
-print("a:", a)
-print("b:", b)
+# Topic Name: Casting Practice
+# Level: Beginner
+# Casting Practice reinforces the chapter with runnable examples.
+# Read the theory first, then run this file and modify examples.
 
-string = 'This is Python'
-strings = "This is Python"
-char = "C"
-multiline_str = """This is a multiline string with more than one line code."""
-unicode = u"\U0001f600\U0001F606\U0001F923"
-raw_str = r"raw \n string"
+# Theory
+# Casting Practice reinforces the chapter with runnable examples.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-print(string)
-print(strings)
-print(char)
-print(multiline_str)
-print(unicode)
-print(raw_str)
-# binary
-x = 3.14j
-print(x.imag)
+# Syntax
+# # See the runnable examples below for the topic syntax.
 
-a = 0b1010 #Binary Literals
-b = 100 #Decimal Literal
-c = 0o310 #Octal Literal
-d = 0x12c #Hexadecimal Literal
+# Practice Programs
+# 1. Store a student's details using suitable data types.
+# 2. Convert numeric strings into numbers and calculate a total.
+# 3. Validate a piece of text before converting it.
 
-#Float Literal
-float_1 = 10.5
-float_2 = 1.5e2 # 1.5 * 10^2
-float_3 = 1.5e-3 # 1.5 * 10^-3
+# Mini Project
+# Build a tiny program that uses casting practice
+# with realistic sample data, validation, and printed output.
 
-#Complex Literal
-x = 3.14j
+# Interview Questions
+# Q1. Is Python statically typed?
+# A1. No. Python is dynamically typed; names can refer to objects of different types over time.
+# Q2. What is the difference between mutable and immutable types?
+# A2. Mutable objects can change in place; immutable objects create new values when changed.
 
-print(a, b, c, d)
-print(float_1, float_2,float_3)
-print(x, x.imag, x.real)
+# Examples and practice implementations start below.
+def parse_prices(raw_prices):
+    return [float(price) for price in raw_prices]
 
-# Explicit
-# str -> int
-#int(4+5j)
 
-# int to str
-str(5)
+def join_numbers(numbers):
+    return ", ".join(str(number) for number in numbers)
 
-# float
-float(4)
 
-# Implicit Vs Explicit
-print(5+5.6)
-print(type(5),type(5.6))
-# Static Vs Dynamic
-input('Enter Email')
-# take input from users and store them in a variable
-fnum = int(input('enter first number'))
-snum = int(input('enter second number'))
-#print(type(fnum),type(snum))
-# add the 2 variables
-result = fnum + snum
-# print the result
-print(result)
-print(type(fnum))
+def practice_bool_cast(values):
+    return [bool(value) for value in values]
+
+
+def main():
+    print("--- Casting Practice ---")
+    print("Prices:", parse_prices(["10.5", "20"]))
+    print("Joined:", join_numbers([1, 2, 3]))
+    print("Booleans:", practice_bool_cast(["", "Python", 0, 7]))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Casting Practice ---
+# Prices: [10.5, 20.0]
+# Joined: 1, 2, 3
+# Booleans: [False, True, False, True]
+# End Expected Output

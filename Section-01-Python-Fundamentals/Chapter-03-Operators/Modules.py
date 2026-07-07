@@ -1,82 +1,70 @@
-# math
+"""Learning file for Operator Module Practice."""
 
-# math
-import math
+# Topic Name: Operator Module Practice
+# Level: Intermediate
+# Operator Module Practice reinforces the chapter with runnable examples.
+# Read the theory first, then run this file and modify examples.
 
-math.sqrt(196)
-# keywords
-# keyword
-import keyword
-print(keyword.kwlist)
-# random
-# random
-import random
-print(random.randint(1,100))
-# datetime
-# datetime
-import datetime
-print(datetime.datetime.now())
+# Theory
+# Operator Module Practice reinforces the chapter with runnable examples.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
+# Syntax
+# # See the runnable examples below for the topic syntax.
 
-help('modules')
+# Practice Programs
+# 1. Build a calculator for two numbers.
+# 2. Check whether a number is even, positive, and inside a range.
+# 3. Use membership and comparison operators to validate a role.
 
-# While loop example -> program to print the table
-# Program -> Sum of all digits of a given number
-# Program -> keep accepting numbers from users till he/she enters a 0 and then find the avg
+# Mini Project
+# Build a tiny program that uses operator module practice
+# with realistic sample data, validation, and printed output.
 
+# Interview Questions
+# Q1. What is operator precedence?
+# A1. It is the order in which Python evaluates operators in an expression.
+# Q2. What is short-circuit evaluation?
+# A2. and/or stop evaluating as soon as the final boolean result is known.
 
-number = int(input('enter the number'))
-
-i = 1
-
-while i<11:
-  print(number,'*',i,'=',number * i)
-  i += 1
+# Examples and practice implementations start below.
+import operator
 
 
-  # while loop with else
-
-x = 1
-
-while x < 3:
-  print(x)
-  x += 1
-
-else:
-  print('limit crossed')
+def example_operator_functions():
+    print("Add:", operator.add(10, 5))
+    print("Multiply:", operator.mul(10, 5))
+    print("Greater:", operator.gt(10, 5))
 
 
-  # Guessing game
+def example_sort_with_itemgetter():
+    students = [("Asha", 92), ("Ravi", 85), ("Meera", 98)]
+    ranked = sorted(students, key=operator.itemgetter(1), reverse=True)
+    print("Top:", ranked[0])
 
-# generate a random integer between 1 and 100
-import random
-jackpot = random.randint(1,100)
 
-guess = int(input('guess karo'))
-counter = 1
-while guess != jackpot:
-  if guess < jackpot:
-    print('galat!guess higher')
-  else:
-    print('galat!guess lower')
+def practice_apply(operation, left, right):
+    operations = {"add": operator.add, "sub": operator.sub}
+    return operations[operation](left, right)
 
-  guess = int(input('guess karo'))
-  counter += 1
 
-else:
-  print('correct guess')
-  print('attempts',counter)
+def main():
+    print("--- Operator Module Practice ---")
+    example_operator_functions()
+    example_sort_with_itemgetter()
+    print("Apply:", practice_apply("sub", 10, 3))
 
-  # For loop demo
 
-for i in {1,2,3,4,5}:
-  print(i)
+if __name__ == "__main__":
+    main()
 
-#   Program - The current population of a town is 10000. The population of the town is increasing at the rate of 10% per year. You have to write a program to find out the population at the end of each of the last 10 years.
-
-curr_pop = 10000
-
-for i in range(10,0,-1):
-  print(i,curr_pop)
-  curr_pop = curr_pop - 0.1*curr_pop
-
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Operator Module Practice ---
+# Add: 15
+# Multiply: 50
+# Greater: True
+# Top: ('Meera', 98)
+# Apply: 7
+# End Expected Output

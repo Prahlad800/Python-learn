@@ -1,36 +1,74 @@
-# Topic: Scope
-# Explanation: Scope controls where a variable can be accessed.
+"""Learning file for Variable Scope."""
 
-# Syntax:
-# x = 10
+# Topic Name: Variable Scope
+# Level: Intermediate
+# Scope controls where names can be read or assigned; Python follows the LEGB lookup rule.
+# Read the theory first, then run this file and modify examples.
 
-def show():
-    print(x)
+# Theory
+# Scope controls where names can be read or assigned; Python follows the LEGB lookup rule.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-show()
+# Syntax
+# local_name = value
+# global name
+# nonlocal name
 
-# Examples:
-# x = 10
+# Practice Programs
+# 1. Create functions for add, subtract, multiply, and divide.
+# 2. Refactor repeated code into reusable functions.
+# 3. Write recursive and non-recursive solutions for factorial.
 
-def show():
-    print(x)
+# Mini Project
+# Build a tiny program that uses variable scope
+# with realistic sample data, validation, and printed output.
 
-show()
+# Interview Questions
+# Q1. Why are functions important?
+# A1. They make code reusable, testable, readable, and easier to change.
+# Q2. What is recursion?
+# A2. A function calling itself with a smaller problem until a base case is reached.
 
-# Practice Programs:
-# 1. Create a local variable inside a function.
-2. Use a global variable inside a function.
+# Examples and practice implementations start below.
+course = "Python"
 
-# Interview Questions:
-# Q: What is local scope?
-A: Variables defined inside a function are local to that function.
 
-# Expected Output:
-# 10
+def example_local_scope():
+    course = "Data Science"
+    print("Local:", course)
 
-x = 10
 
-def show():
-    print(x)
+def example_global_scope():
+    print("Global:", course)
 
-show()
+
+def make_counter():
+    count = 0
+
+    def increment():
+        nonlocal count
+        count += 1
+        return count
+
+    return increment
+
+
+def main():
+    print("--- Variable Scope ---")
+    example_local_scope()
+    example_global_scope()
+    counter = make_counter()
+    print("Counter:", counter(), counter())
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Variable Scope ---
+# Local: Data Science
+# Global: Python
+# Counter: 1 2
+# End Expected Output

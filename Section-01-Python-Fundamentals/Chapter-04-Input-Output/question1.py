@@ -1,41 +1,61 @@
-# Write a program that will give you in hand monthly salary after deduction on CTC - HRA(10%), DA(5%), PF(3%) and taxes deduction as below:
-# Salary(Lakhs) : Tax(%)
+"""Learning file for I/O Practice: Bill Calculator."""
 
-# Below 5 : 0%
-# 5-10 : 10%
-# 10-20 : 20%
-# aboove 20 : 30%
+# Topic Name: I/O Practice: Bill Calculator
+# Level: Beginner
+# I/O Practice: Bill Calculator reinforces the chapter with runnable examples.
+# Read the theory first, then run this file and modify examples.
 
-salary=int(input("enter you CTC salary in lakha Ex 12\n "))
-salary_in_hand=salary * 100000
-if salary_in_hand < 500000:
-    tex=0
-elif 500000 < salary_in_hand < 1000000:
-    tex= salary_in_hand * (5/100)
-elif 1000000 < salary_in_hand < 2000000:
-    tex=salary_in_hand * (10/100)
-elif salary_in_hand < 200000:
-    tex=salary_in_hand * (10/100)
-else:
-    tex=salary_in_hand * (30/100)
+# Theory
+# I/O Practice: Bill Calculator reinforces the chapter with runnable examples.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-print("salary_in_hand = ",salary_in_hand,"tex =",tex,"\n")
+# Syntax
+# # See the runnable examples below for the topic syntax.
 
-ctc=salary_in_hand - tex
+# Practice Programs
+# 1. Read name and marks, then print a formatted report.
+# 2. Format a bill with currency and tax.
+# 3. Handle empty input with a default value.
 
-her=ctc * (10/100)
-print("ctc = ",ctc,"der =",her,"\n")
-da= ctc * (5/100)
-print("ctc = ",ctc,"da =",da,"\n")
-pf=ctc * (3/100)
-print("ctc = ",ctc,"pf =",pf,"\n")
+# Mini Project
+# Build a tiny program that uses i/o practice: bill calculator
+# with realistic sample data, validation, and printed output.
 
-in_hand=salary_in_hand - tex - her - da - pf
-print("ctc = ",ctc,"der =",her, "in hand",in_hand,"salaey in hand",salary_in_hand,"\n")
+# Interview Questions
+# Q1. What does input() return?
+# A1. It always returns a string.
+# Q2. Why use formatted output?
+# A2. Formatting makes reports predictable, readable, and easier to maintain.
 
-
-
+# Examples and practice implementations start below.
+def calculate_bill(price, quantity, tax_rate):
+    subtotal = price * quantity
+    tax = subtotal * tax_rate
+    return subtotal + tax
 
 
+def example_bill():
+    total = calculate_bill(250, 2, 0.18)
+    print(f"Bill total: Rs.{total:.2f}")
 
 
+def practice_discounted_bill(price, quantity, discount):
+    return price * quantity * (1 - discount)
+
+
+def main():
+    print("--- I/O Practice: Bill Calculator ---")
+    example_bill()
+    print(f"After discount: Rs.{practice_discounted_bill(100, 5, 0.10):.2f}")
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- I/O Practice: Bill Calculator ---
+# Bill total: Rs.590.00
+# After discount: Rs.450.00
+# End Expected Output

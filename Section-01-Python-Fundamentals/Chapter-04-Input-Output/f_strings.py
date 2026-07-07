@@ -1,29 +1,68 @@
-# Topic: f-Strings
-# Explanation: f-strings insert variables directly into strings.
+"""Learning file for F-Strings."""
 
-# Syntax:
-# name = "John"
-print(f"Hello {name}")
+# Topic Name: F-Strings
+# Level: Beginner
+# F-strings are modern Python's most readable way to embed expressions inside strings.
+# Read the theory first, then run this file and modify examples.
 
-# Examples:
-# name = "John"
-age = 21
-print(f"Hello {name}")
-print(f"You are {age} years old")
+# Theory
+# F-strings are modern Python's most readable way to embed expressions inside strings.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Practice Programs:
-# 1. Create an f-string with two variables.
-2. Print a formatted sentence.
+# Syntax
+# f'{name} scored {marks}'
+# f'{price:.2f}'
+# f'{value=}'
 
-# Interview Questions:
-# Q: What are f-strings?
-A: They allow direct interpolation of variables into strings.
+# Practice Programs
+# 1. Read name and marks, then print a formatted report.
+# 2. Format a bill with currency and tax.
+# 3. Handle empty input with a default value.
 
-# Expected Output:
-# Hello John
-You are 21 years old
+# Mini Project
+# Build a tiny program that uses f-strings
+# with realistic sample data, validation, and printed output.
 
-name = "John"
-age = 21
-print(f"Hello {name}")
-print(f"You are {age} years old")
+# Interview Questions
+# Q1. What does input() return?
+# A1. It always returns a string.
+# Q2. Why use formatted output?
+# A2. Formatting makes reports predictable, readable, and easier to maintain.
+
+# Examples and practice implementations start below.
+def example_f_string():
+    name = "Asha"
+    marks = 94
+    print(f"{name} scored {marks} marks.")
+
+
+def example_format_specs():
+    price = 1234.5
+    ratio = 0.875
+    print(f"Price: Rs.{price:,.2f}")
+    print(f"Success: {ratio:.1%}")
+
+
+def practice_debug_value(value):
+    return f"{value=}"
+
+
+def main():
+    print("--- F-Strings ---")
+    example_f_string()
+    example_format_specs()
+    print(practice_debug_value(42))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- F-Strings ---
+# Asha scored 94 marks.
+# Price: Rs.1,234.50
+# Success: 87.5%
+# value=42
+# End Expected Output

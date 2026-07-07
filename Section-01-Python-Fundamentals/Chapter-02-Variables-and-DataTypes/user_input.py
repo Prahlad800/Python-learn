@@ -1,23 +1,67 @@
-# Topic: User Input
-# Explanation: The input() function reads input from the terminal.
+"""Learning file for User Input."""
 
-# Syntax:
-# name = input("Enter your name: ")
+# Topic Name: User Input
+# Level: Beginner
+# input() reads text from the keyboard; production code validates and converts that text before using it.
+# Read the theory first, then run this file and modify examples.
 
-# Examples:
-# name = input("Enter your name: ")
-print("Hello", name)
+# Theory
+# input() reads text from the keyboard; production code validates and converts that text before using it.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Practice Programs:
-# 1. Ask the user for their age.
-2. Print a greeting with the entered name.
+# Syntax
+# name = input('Name: ')
+# age = int(input('Age: '))
+# value.strip()
 
-# Interview Questions:
-# Q: What type does input() return?
-A: It returns a string.
+# Practice Programs
+# 1. Store a student's details using suitable data types.
+# 2. Convert numeric strings into numbers and calculate a total.
+# 3. Validate a piece of text before converting it.
 
-# Expected Output:
-# Hello <entered-name>
+# Mini Project
+# Build a tiny program that uses user input
+# with realistic sample data, validation, and printed output.
 
-name = input("Enter your name: ")
-print("Hello", name)
+# Interview Questions
+# Q1. Is Python statically typed?
+# A1. No. Python is dynamically typed; names can refer to objects of different types over time.
+# Q2. What is the difference between mutable and immutable types?
+# A2. Mutable objects can change in place; immutable objects create new values when changed.
+
+# Examples and practice implementations start below.
+def parse_age(raw_age):
+    cleaned = raw_age.strip()
+    if not cleaned.isdigit():
+        return None
+    return int(cleaned)
+
+
+def example_simulated_input():
+    raw_name = "  Asha  "
+    raw_age = " 21 "
+    name = raw_name.strip()
+    age = parse_age(raw_age)
+    print(f"{name} is {age} years old.")
+
+
+def practice_create_username(first_name, year):
+    return f"{first_name.strip().lower()}{int(year)}"
+
+
+def main():
+    print("--- User Input ---")
+    example_simulated_input()
+    print("Username:", practice_create_username(" Prahlad ", "2026"))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- User Input ---
+# Asha is 21 years old.
+# Username: prahlad2026
+# End Expected Output

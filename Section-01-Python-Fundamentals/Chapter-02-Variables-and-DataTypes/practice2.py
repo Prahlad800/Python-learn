@@ -1,47 +1,66 @@
-# Static Vs Dynamic Typing
-# Static Vs Dynamic Binding
-# stylish declaration techniques
-# C/C++
-name = 'nitish'
-print(name)
+"""Learning file for Data Type Practice."""
 
-a = 5
-b = 6
+# Topic Name: Data Type Practice
+# Level: Beginner
+# Data Type Practice reinforces the chapter with runnable examples.
+# Read the theory first, then run this file and modify examples.
 
-print(a + b)
-# Dynamic Typing
-a = 5
-# Static Typing
-# int a = 5
-# Dynamic Binding
-a = 5
-print(a)
-a = 'nitish'
-print(a)
+# Theory
+# Data Type Practice reinforces the chapter with runnable examples.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Static Binding
-# int a = 5
-a = 1
-b = 2
-c = 3
-print(a,b,c)
+# Syntax
+# # See the runnable examples below for the topic syntax.
 
-a,b,c = 1,2,3
-print(a,b,c)
-a=b=c= 5
-print(a,b,c)
+# Practice Programs
+# 1. Store a student's details using suitable data types.
+# 2. Convert numeric strings into numbers and calculate a total.
+# 3. Validate a piece of text before converting it.
 
-# this is a comment
-# second line
-a = 4
-b = 6 # like this
-# second comment
-print(a+b)
-# Identifiers
-# You can't start with a digit
-name1 = 'Nitish'
-print(name1)
-# You can use special chars -> _
-_ = 'ntiish'
-print(_)
-# identiers can not be keyword
+# Mini Project
+# Build a tiny program that uses data type practice
+# with realistic sample data, validation, and printed output.
+
+# Interview Questions
+# Q1. Is Python statically typed?
+# A1. No. Python is dynamically typed; names can refer to objects of different types over time.
+# Q2. What is the difference between mutable and immutable types?
+# A2. Mutable objects can change in place; immutable objects create new values when changed.
+
+# Examples and practice implementations start below.
+def describe_values(values):
+    return [type(value).__name__ for value in values]
+
+
+def split_profile():
+    return {
+        "name": "Asha",
+        "skills": ["Python", "Git"],
+        "active": True,
+    }
+
+
+def practice_mutable_copy(values):
+    copied = values.copy()
+    copied.append("new")
+    return values, copied
+
+
+def main():
+    print("--- Data Type Practice ---")
+    print(describe_values([1, 2.5, "py", True]))
+    print(split_profile())
+    print("Copy:", practice_mutable_copy(["old"]))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Data Type Practice ---
+# ['int', 'float', 'str', 'bool']
+# {'name': 'Asha', 'skills': ['Python', 'Git'], 'active': True}
+# Copy: (['old'], ['old', 'new'])
+# End Expected Output

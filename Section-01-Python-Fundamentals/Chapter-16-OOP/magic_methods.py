@@ -1,42 +1,74 @@
-# Topic: Magic Methods
-# Explanation: Magic methods let objects integrate with Python syntax.
+"""Learning file for Magic Methods."""
 
-# Syntax:
-# class Book:
-    def __init__(self, title):
-        self.title = title
+# Topic Name: Magic Methods
+# Level: Advanced
+# Magic methods customize how objects behave with built-in Python operations.
+# Read the theory first, then run this file and modify examples.
+
+# Theory
+# Magic methods customize how objects behave with built-in Python operations.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
+
+# Syntax
+# __str__
+# __repr__
+# __len__
+# __add__
+
+# Practice Programs
+# 1. Model a bank account class.
+# 2. Use inheritance for different employee types.
+# 3. Build a small task manager project.
+
+# Mini Project
+# Build a tiny program that uses magic methods
+# with realistic sample data, validation, and printed output.
+
+# Interview Questions
+# Q1. What is self?
+# A1. self is the instance being operated on by an instance method.
+# Q2. What is encapsulation?
+# A2. Keeping data and behavior together while controlling access to internal state.
+
+# Examples and practice implementations start below.
+class Money:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def __str__(self):
+        return f"Rs.{self.amount:.2f}"
 
     def __repr__(self):
-        return f"Book({self.title})"
+        return f"Money(amount={self.amount!r})"
 
-print(Book("Python"))
+    def __add__(self, other):
+        return Money(self.amount + other.amount)
 
-# Examples:
-# class Book:
-    def __init__(self, title):
-        self.title = title
+    def __len__(self):
+        return len(str(int(self.amount)))
 
-    def __repr__(self):
-        return f"Book({self.title})"
 
-print(Book("Python"))
+def example_magic_methods():
+    wallet = Money(150.5)
+    bonus = Money(49.5)
+    print("Wallet:", wallet)
+    print("Total:", wallet + bonus)
+    print("Digits:", len(wallet))
 
-# Practice Programs:
-# 1. Implement __repr__ for a class.
-2. Implement __len__ for a class.
 
-# Interview Questions:
-# Q: What are magic methods?
-A: They are special methods with double underscores used by Python internals.
+def main():
+    print("--- Magic Methods ---")
+    example_magic_methods()
 
-# Expected Output:
-# Book(Python)
 
-class Book:
-    def __init__(self, title):
-        self.title = title
+if __name__ == "__main__":
+    main()
 
-    def __repr__(self):
-        return f"Book({self.title})"
-
-print(Book("Python"))
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- Magic Methods ---
+# Wallet: Rs.150.50
+# Total: Rs.200.00
+# Digits: 3
+# End Expected Output

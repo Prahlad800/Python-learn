@@ -1,27 +1,69 @@
-# Topic: String Slicing
-# Explanation: Slicing lets you access parts of a string.
+"""Learning file for String Slicing."""
 
-# Syntax:
-# word = "Python"
-print(word[0:3])
+# Topic Name: String Slicing
+# Level: Beginner
+# Slicing extracts substrings using start, stop, and step indexes.
+# Read the theory first, then run this file and modify examples.
 
-# Examples:
-# word = "Python"
-print(word[0:3])
-print(word[::-1])
+# Theory
+# Slicing extracts substrings using start, stop, and step indexes.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Practice Programs:
-# 1. Get the first three letters.
-2. Get the last three letters.
+# Syntax
+# text[start:stop]
+# text[start:stop:step]
+# text[::-1]
 
-# Interview Questions:
-# Q: What does word[::-1] do?
-A: It reverses the string.
+# Practice Programs
+# 1. Clean and normalize user names.
+# 2. Check whether a sentence is a palindrome after removing spaces.
+# 3. Count words and characters in text.
 
-# Expected Output:
-# Pyt
-nohtyP
+# Mini Project
+# Build a tiny program that uses string slicing
+# with realistic sample data, validation, and printed output.
 
-word = "Python"
-print(word[0:3])
-print(word[::-1])
+# Interview Questions
+# Q1. Are strings mutable?
+# A1. No. String methods return new strings instead of changing the original.
+# Q2. What does slicing exclude?
+# A2. The stop index is excluded from the result.
+
+# Examples and practice implementations start below.
+def example_basic_slices():
+    text = "Python"
+    print("first three:", text[:3])
+    print("last two:", text[-2:])
+    print("reverse:", text[::-1])
+
+
+def example_step_slice():
+    text = "abcdef"
+    print("Every second:", text[::2])
+
+
+def practice_mask_email(email):
+    name, domain = email.split("@")
+    return name[:2] + "***@" + domain
+
+
+def main():
+    print("--- String Slicing ---")
+    example_basic_slices()
+    example_step_slice()
+    print("Masked:", practice_mask_email("asha@example.com"))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- String Slicing ---
+# first three: Pyt
+# last two: on
+# reverse: nohtyP
+# Every second: ace
+# Masked: as***@example.com
+# End Expected Output

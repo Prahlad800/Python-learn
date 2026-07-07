@@ -1,51 +1,83 @@
-# Topic: OOP Mini Project
-# Explanation: Build a small class-based project such as a bank account.
+"""Learning file for OOP Mini Project."""
 
-# Syntax:
-# class BankAccount:
-    def __init__(self, owner, balance=0):
-        self.owner = owner
-        self.balance = balance
+# Topic Name: OOP Mini Project
+# Level: Advanced
+# An OOP mini project combines classes, encapsulation, methods, and object collaboration.
+# Read the theory first, then run this file and modify examples.
 
-    def deposit(self, amount):
-        self.balance += amount
-        return self.balance
+# Theory
+# An OOP mini project combines classes, encapsulation, methods, and object collaboration.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-account = BankAccount("Asha", 100)
-print(account.deposit(50))
+# Syntax
+# class Task:
+# class TodoList:
+# todo.add_task(...)
 
-# Examples:
-# class BankAccount:
-    def __init__(self, owner, balance=0):
-        self.owner = owner
-        self.balance = balance
+# Practice Programs
+# 1. Model a bank account class.
+# 2. Use inheritance for different employee types.
+# 3. Build a small task manager project.
 
-    def deposit(self, amount):
-        self.balance += amount
-        return self.balance
+# Mini Project
+# Build a tiny program that uses oop mini project
+# with realistic sample data, validation, and printed output.
 
-account = BankAccount("Asha", 100)
-print(account.deposit(50))
+# Interview Questions
+# Q1. What is self?
+# A1. self is the instance being operated on by an instance method.
+# Q2. What is encapsulation?
+# A2. Keeping data and behavior together while controlling access to internal state.
 
-# Practice Programs:
-# 1. Add methods for deposit and withdraw.
-2. Store multiple accounts.
+# Examples and practice implementations start below.
+class Task:
+    def __init__(self, title, completed=False):
+        self.title = title
+        self.completed = completed
 
-# Interview Questions:
-# Q: Why is OOP useful in projects?
-A: It organizes code into reusable components.
+    def mark_done(self):
+        self.completed = True
 
-# Expected Output:
-# 150
+    def __str__(self):
+        status = "done" if self.completed else "pending"
+        return f"{self.title} [{status}]"
 
-class BankAccount:
-    def __init__(self, owner, balance=0):
-        self.owner = owner
-        self.balance = balance
 
-    def deposit(self, amount):
-        self.balance += amount
-        return self.balance
+class TodoList:
+    def __init__(self):
+        self._tasks = []
 
-account = BankAccount("Asha", 100)
-print(account.deposit(50))
+    def add_task(self, title):
+        task = Task(title)
+        self._tasks.append(task)
+        return task
+
+    def complete_task(self, title):
+        for task in self._tasks:
+            if task.title == title:
+                task.mark_done()
+                return task
+        raise ValueError("Task not found.")
+
+    def pending_tasks(self):
+        return [task for task in self._tasks if not task.completed]
+
+
+def main():
+    print("--- OOP Mini Project ---")
+    todo = TodoList()
+    todo.add_task("Read OOP chapter")
+    todo.add_task("Build project")
+    todo.complete_task("Read OOP chapter")
+    print("Pending:", [str(task) for task in todo.pending_tasks()])
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- OOP Mini Project ---
+# Pending: ['Build project [pending]']
+# End Expected Output

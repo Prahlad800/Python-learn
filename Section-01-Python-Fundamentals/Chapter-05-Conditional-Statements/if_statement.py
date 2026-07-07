@@ -1,27 +1,67 @@
-# Topic: if Statement
-# Explanation: The if statement runs a block when a condition is True.
+"""Learning file for if Statement."""
 
-# Syntax:
-# age = 18
-if age >= 18:
-    print("Adult")
+# Topic Name: if Statement
+# Level: Beginner
+# An if statement runs a block only when its condition is true.
+# Read the theory first, then run this file and modify examples.
 
-# Examples:
-# age = 18
-if age >= 18:
-    print("Adult")
+# Theory
+# An if statement runs a block only when its condition is true.
+# Good Python code favors clear names, small functions, and
+# predictable behavior that can be tested.
 
-# Practice Programs:
-# 1. Check if a number is positive.
-2. Check if a person is eligible to vote.
+# Syntax
+# if condition:
+#     statement
 
-# Interview Questions:
-# Q: What happens if the condition is False?
-A: The block is skipped.
+# Practice Programs
+# 1. Write a grade calculator.
+# 2. Check eligibility for a discount.
+# 3. Build a menu using match-case.
 
-# Expected Output:
-# Adult
+# Mini Project
+# Build a tiny program that uses if statement
+# with realistic sample data, validation, and printed output.
 
-age = 18
-if age >= 18:
-    print("Adult")
+# Interview Questions
+# Q1. When should you use elif?
+# A1. Use elif when only one branch from several ordered choices should run.
+# Q2. What is a truthy value?
+# A2. A value that behaves like True in a boolean context.
+
+# Examples and practice implementations start below.
+def example_if():
+    temperature = 39
+    if temperature > 37:
+        print("Fever alert")
+
+
+def example_truthy():
+    username = "asha"
+    if username:
+        print("Username provided")
+
+
+def practice_is_even(number):
+    if number % 2 == 0:
+        return True
+    return False
+
+
+def main():
+    print("--- if Statement ---")
+    example_if()
+    example_truthy()
+    print("12 is even:", practice_is_even(12))
+
+
+if __name__ == "__main__":
+    main()
+
+# Expected Output (sample):
+# Run this file with Python to reproduce the lesson output.
+# --- if Statement ---
+# Fever alert
+# Username provided
+# 12 is even: True
+# End Expected Output
