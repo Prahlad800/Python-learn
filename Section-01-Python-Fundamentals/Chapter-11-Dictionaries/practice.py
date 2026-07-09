@@ -1,66 +1,164 @@
-"""Learning file for Dictionary Practice Programs."""
+"""
+Topic: Dictionary Practice Exercises
+Chapter: 11
+Level: Intermediate
 
-# Topic Name: Dictionary Practice Programs
-# Level: Beginner
-# Dictionary Practice Programs reinforces the chapter with runnable examples.
-# Read the theory first, then run this file and modify examples.
+Description:
+    This file contains comprehensive practice exercises to reinforce dictionary concepts,
+    including creation, methods, iteration, and comprehensions.
 
-# Theory
-# Dictionary Practice Programs reinforces the chapter with runnable examples.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    Practice is like going to the gym. You've learned the theory of how the machines work, 
+    but you need to put in the reps to build the muscle memory for solving real-world problems.
 
-# Syntax
-# # See the runnable examples below for the topic syntax.
+Key Concepts:
+    - Applying dictionary methods
+    - Data transformation
+    - Nested data processing
+"""
 
-# Practice Programs
-# 1. Create a student report dictionary.
-# 2. Update inventory quantities safely.
-# 3. Read nested dictionary values with get().
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
 
-# Mini Project
-# Build a tiny program that uses dictionary practice programs
-# with realistic sample data, validation, and printed output.
+# Practice sets up various basic data structures to work with.
 
-# Interview Questions
-# Q1. What must dictionary keys be?
-# A1. Keys must be hashable, such as strings, numbers, or tuples of immutable values.
-# Q2. What does get() prevent?
-# A2. It avoids KeyError by returning a default when the key is missing.
+student_scores = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "Diana": 95
+}
 
-# Examples and practice implementations start below.
-def invert_dictionary(data):
-    return {value: key for key, value in data.items()}
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES (SOLUTIONS TO COMMON PROBLEMS)
+# ============================================================
 
+# Problem 1: Find the student with the highest score
+def find_top_student(scores):
+    top_student = None
+    highest_score = -1
+    for student, score in scores.items():
+        if score > highest_score:
+            highest_score = score
+            top_student = student
+    return top_student, highest_score
 
-def inventory_value(inventory):
-    total = 0
-    for item in inventory.values():
-        total += item["price"] * item["quantity"]
-    return total
+print(f"Top student: {find_top_student(student_scores)}")
 
+# Problem 2: Grouping items
+# Group words by their starting letter
+words = ["apple", "banana", "apricot", "blueberry", "cherry"]
+def group_by_first_letter(word_list):
+    grouped = {}
+    for word in word_list:
+        first_char = word[0]
+        if first_char not in grouped:
+            grouped[first_char] = []
+        grouped[first_char].append(word)
+    return grouped
 
-def practice_group_by_first_letter(words):
-    groups = {}
+print(f"Grouped words: {group_by_first_letter(words)}")
+
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
+
+# Problem 3: Frequency counter
+def count_characters(text):
+    # Ignoring spaces and making lowercase
+    cleaned_text = text.replace(" ", "").lower()
+    freq = {}
+    for char in cleaned_text:
+        freq[char] = freq.get(char, 0) + 1
+    return freq
+
+print(f"Character frequencies: {count_characters('Hello World')}")
+
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
+
+# Mistake: Modifying dictionary while iterating over it in a practice problem
+# BAD: for k, v in my_dict.items(): if v == 0: del my_dict[k]
+# GOOD: 
+def remove_zeros(d):
+    # Create a new dictionary using comprehension
+    return {k: v for k, v in d.items() if v != 0}
+
+test_dict = {"a": 1, "b": 0, "c": 3, "d": 0}
+print(f"Without zeros: {remove_zeros(test_dict)}")
+
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
+
+"""
+Q1: How do you sort a dictionary by its values?
+A: You can use the built-in sorted() function on dict.items() with a custom lambda key.
+   Example: dict(sorted(my_dict.items(), key=lambda item: item[1]))
+
+Q2: Write a function to merge two dictionaries, summing the values of common keys.
+A: 
+def merge_and_sum(d1, d2):
+    result = d1.copy()
+    for k, v in d2.items():
+        result[k] = result.get(k, 0) + v
+    return result
+
+Q3: How do you check if two dictionaries have the exact same key-value pairs?
+A: You can simply use the equality operator: dict1 == dict2.
+"""
+
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
+
+# EXERCISE 1: Dictionary to List of Tuples
+# Write a function that converts a dictionary into a list of (key, value) tuples.
+def dict_to_tuples(d):
+    return list(d.items())
+
+# EXERCISE 2: List of Tuples to Dictionary
+# Write a function that converts a list of (key, value) tuples back into a dictionary.
+def tuples_to_dict(t_list):
+    return dict(t_list)
+
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
+
+def mini_challenge():
+    """
+    Challenge: Anagram Grouper
+    Given a list of strings, group anagrams together.
+    An anagram is a word formed by rearranging the letters of a different word.
+    Example Input: ["eat","tea","tan","ate","nat","bat"]
+    """
+    words = ["eat", "tea", "tan", "ate", "nat", "bat"]
+    anagrams = {}
+    
     for word in words:
-        groups.setdefault(word[0], []).append(word)
-    return groups
+        # Sort the word to create a unique key for anagrams
+        sorted_word = "".join(sorted(word))
+        
+        if sorted_word not in anagrams:
+            anagrams[sorted_word] = []
+        anagrams[sorted_word].append(word)
+        
+    # Print the grouped anagrams as a list of lists
+    print("Grouped Anagrams:", list(anagrams.values()))
 
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
 
-def main():
-    print("--- Dictionary Practice Programs ---")
-    print("Invert:", invert_dictionary({"a": 1, "b": 2}))
-    print("Inventory:", inventory_value({"pen": {"price": 10, "quantity": 3}}))
-    print("Groups:", practice_group_by_first_letter(["apple", "ant", "bat"]))
-
+"""
+- Practice combines methods like .get(), .items(), and loops.
+- Grouping, counting, and transforming are common real-world dictionary operations.
+- Remember to avoid modifying a dictionary size during iteration.
+- Comprehensions are powerful tools for creating new filtered/transformed dictionaries.
+"""
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- Dictionary Practice Programs ---
-# Invert: {1: 'a', 2: 'b'}
-# Inventory: 30
-# Groups: {'a': ['apple', 'ant'], 'b': ['bat']}
-# End Expected Output
+    mini_challenge()
