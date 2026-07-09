@@ -1,72 +1,147 @@
-"""Learning file for String Methods."""
+"""
+Topic: Built-in String Methods
+Chapter: 8
+Level: Intermediate
 
-# Topic Name: String Methods
-# Level: Beginner
-# String methods clean, search, transform, split, and join text without changing the original string.
-# Read the theory first, then run this file and modify examples.
+Description:
+    Python strings come with a rich set of built-in methods for manipulation, searching, replacing, and case conversion.
+    Since strings are immutable, these methods always return a new string.
 
-# Theory
-# String methods clean, search, transform, split, and join text without changing the original string.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    Think of string methods like tools in a text editor. You have a tool to uppercase everything, a tool to find a word, and a tool to replace words.
 
-# Syntax
-# text.strip()
+Key Concepts:
+    - Case conversions: lower(), upper(), title(), capitalize()
+    - Searching: find(), index(), count(), startswith(), endswith()
+    - Modification: replace(), strip(), split(), join()
+"""
+
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
+
+def case_methods():
+    """Demonstrates case conversion methods."""
+    text = "python PROGRAMMING is fun"
+    print("Original:", text)
+    print("Upper:", text.upper())
+    print("Lower:", text.lower())
+    print("Title:", text.title())
+    print("Capitalize:", text.capitalize())
+
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES
+# ============================================================
+
+def modification_methods():
+    """Demonstrates stripping, replacing, splitting, and joining."""
+    # Stripping whitespace
+    messy = "   some user input   "
+    clean = messy.strip()
+    print(f"Stripped: '{clean}'")
+    
+    # Replacing
+    sentence = "I like apples."
+    new_sentence = sentence.replace("apples", "oranges")
+    print("Replaced:", new_sentence)
+    
+    # Splitting and Joining
+    csv_data = "apple,banana,cherry"
+    fruits_list = csv_data.split(",")
+    print("Split list:", fruits_list)
+    
+    joined_data = " | ".join(fruits_list)
+    print("Joined string:", joined_data)
+
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
+
+def search_methods():
+    """Searching within strings."""
+    filepath = "report_2023.pdf"
+    
+    print("Starts with 'report':", filepath.startswith("report"))
+    print("Ends with '.pdf':", filepath.endswith(".pdf"))
+    
+    # find vs index
+    text = "Where's Waldo?"
+    print("Find Waldo:", text.find("Waldo")) # Returns index
+    print("Find missing:", text.find("Carmen")) # Returns -1
+    
+    # text.index("Carmen") # Would raise ValueError!
+    
+    print("Count 'W':", text.count("W"))
+
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
+
+# Mistake: Expecting a method to modify the string in-place.
+# text = "hello"
 # text.upper()
-# text.replace(old, new)
-# text.split(',')
+# print(text) # Still prints "hello"
+# Fix: text = text.upper()
 
-# Practice Programs
-# 1. Clean and normalize user names.
-# 2. Check whether a sentence is a palindrome after removing spaces.
-# 3. Count words and characters in text.
+# Best Practice: Use `startswith` or `endswith` instead of slicing or regex for simple prefix/suffix checks.
 
-# Mini Project
-# Build a tiny program that uses string methods
-# with realistic sample data, validation, and printed output.
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
 
-# Interview Questions
-# Q1. Are strings mutable?
-# A1. No. String methods return new strings instead of changing the original.
-# Q2. What does slicing exclude?
-# A2. The stop index is excluded from the result.
+"""
+Q: What is the difference between `find()` and `index()`?
+A: `find()` returns -1 if the substring is not found, whereas `index()` raises a ValueError.
 
-# Examples and practice implementations start below.
-def example_cleaning():
-    text = "  Python Programming  "
-    print("strip:", text.strip())
-    print("lower:", text.lower().strip())
-    print("replace:", text.replace("Programming", "Course").strip())
+Q: How do you remove punctuation from the beginning and end of a string?
+A: `string.strip(punctuation_characters)`
 
+Q: Does `split()` with no arguments split by commas?
+A: No, it splits by any whitespace (spaces, tabs, newlines) and discards empty strings.
 
-def example_split_join():
-    csv_line = "red,green,blue"
-    colors = csv_line.split(",")
-    print("Colors:", colors)
-    print("Joined:", " | ".join(colors))
+Q: How can you count non-overlapping occurrences of a substring?
+A: Using the `string.count(substring)` method.
 
+Q: What does `title()` do? Is it flawless?
+A: `title()` capitalizes the first letter of every word. However, it can mess up apostrophes (e.g., "they're" -> "They'Re").
+"""
 
-def practice_title_case(sentence):
-    return sentence.strip().title()
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
 
+# 1. Given a string with leading and trailing dots, strip them out.
+# 2. Replace all spaces in a string with underscores.
+# 3. Take a sentence, split it into words, and join it back using dashes.
 
-def main():
-    print("--- String Methods ---")
-    example_cleaning()
-    example_split_join()
-    print(practice_title_case("  learn python daily  "))
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
 
+def mini_challenge():
+    """Clean and normalize a list of user inputs."""
+    raw_inputs = ["   john doe  ", "ALICE", "bOb SMITH   "]
+    cleaned = []
+    
+    for name in raw_inputs:
+        cleaned.append(name.strip().title())
+        
+    print("Original:", raw_inputs)
+    print("Cleaned:", cleaned)
+
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
+
+"""
+- String methods always return new string objects.
+- Case conversions: `lower()`, `upper()`, `title()`, `capitalize()`, `swapcase()`.
+- Search: `find()`, `index()`, `count()`, `startswith()`, `endswith()`.
+- Modification: `strip()`, `replace()`, `split()`, `join()`.
+"""
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- String Methods ---
-# strip: Python Programming
-# lower: python programming
-# replace: Python Course
-# Colors: ['red', 'green', 'blue']
-# Joined: red | green | blue
-# Learn Python Daily
-# End Expected Output
+    case_methods()
+    modification_methods()
+    search_methods()
+    mini_challenge()

@@ -1,70 +1,139 @@
-"""Learning file for Decision Making Practice."""
+"""
+Topic: Advanced Conditional Logic Practice
+Chapter: 5
+Level: Intermediate / Advanced
 
-# Topic Name: Decision Making Practice
-# Level: Beginner
-# Decision Making Practice reinforces the chapter with runnable examples.
-# Read the theory first, then run this file and modify examples.
+Description:
+    This file focuses on more advanced scenarios, including structural pattern matching (match-case), 
+    guard clauses, and complex nested conditions.
 
-# Theory
-# Decision Making Practice reinforces the chapter with runnable examples.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    Like an escape room, these exercises require combining multiple tools and rules to find the 
+    most efficient and readable solution.
 
-# Syntax
-# # See the runnable examples below for the topic syntax.
+Key Concepts:
+    - Match-Case structural extraction.
+    - Refactoring nested logic to guard clauses.
+    - Evaluating complex data structures.
+"""
 
-# Practice Programs
-# 1. Write a grade calculator.
-# 2. Check eligibility for a discount.
-# 3. Build a menu using match-case.
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
 
-# Mini Project
-# Build a tiny program that uses decision making practice
-# with realistic sample data, validation, and printed output.
+def practice_match_case():
+    print("--- Practice: Match-Case ---")
+    # Task 1: Parse API response
+    response = {"status": 200, "data": ["item1", "item2"]}
+    
+    match response:
+        case {"status": 200, "data": data}:
+            print(f"Success! Data received: {data}")
+        case {"status": 404}:
+            print("Error: Resource not found.")
+        case {"status": status_code}:
+            print(f"Error with status code: {status_code}")
+        case _:
+            print("Invalid response format.")
 
-# Interview Questions
-# Q1. When should you use elif?
-# A1. Use elif when only one branch from several ordered choices should run.
-# Q2. What is a truthy value?
-# A2. A value that behaves like True in a boolean context.
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES
+# ============================================================
 
-# Examples and practice implementations start below.
-def login_message(username, password):
-    if username == "admin" and password == "secret":
-        return "Welcome admin"
-    if username == "admin":
-        return "Wrong password"
-    return "Unknown user"
+def practice_guard_clauses(user_role, is_active, balance):
+    print(f"\n--- Practice: Guard Clauses (Role: {user_role}) ---")
+    # Task 2: Validate a user purchase
+    
+    if not is_active:
+        print("Account is inactive.")
+        return False
+        
+    if balance <= 0:
+        print("Insufficient funds.")
+        return False
+        
+    if user_role not in ["admin", "premium_user"]:
+        print("You do not have permission to buy this item.")
+        return False
+        
+    print("Purchase successful!")
+    return True
 
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
 
-def shipping_cost(cart_total, is_member):
-    if is_member or cart_total >= 999:
-        return 0
-    return 79
+def practice_complex_nesting():
+    print("\n--- Practice: Complex Conditionals ---")
+    # Evaluate a password's strength
+    password = "Secure!Pass1"
+    
+    strength = "Weak"
+    if len(password) >= 8:
+        if any(char.isdigit() for char in password):
+            if any(char.isupper() for char in password):
+                if any(char in "!@#$%^&*" for char in password):
+                    strength = "Strong"
+                else:
+                    strength = "Moderate (Missing special char)"
+            else:
+                strength = "Moderate (Missing uppercase)"
+    
+    print(f"Password Strength: {strength}")
 
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
 
-def practice_grade_feedback(score):
-    if score >= 90:
-        return "Excellent"
-    if score >= 70:
-        return "Good"
-    return "Keep practicing"
+# Best Practices for Advanced Conditionals:
+# - If a function contains a massive block of nested conditionals (like Task 3), 
+#   it's a sign it should be broken down into smaller helper functions.
+# - Use match-case when inspecting the structure/keys of dictionaries, not just exact values.
 
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
 
-def main():
-    print("--- Decision Making Practice ---")
-    print(login_message("admin", "secret"))
-    print("Shipping:", shipping_cost(700, True))
-    print(practice_grade_feedback(86))
+# (Refer to specific feature files for Q&A)
 
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
+
+# Refactoring Challenge:
+# Try rewriting `practice_complex_nesting` logic using multiple separate `if` statements 
+# updating a score, rather than deeply nested conditionals.
+
+def calculate_score(password):
+    score = 0
+    if len(password) >= 8: score += 1
+    if any(char.isdigit() for char in password): score += 1
+    if any(char.isupper() for char in password): score += 1
+    if any(char in "!@#$%^&*" for char in password): score += 1
+    return score
+
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
+
+def mini_challenge():
+    print("\n--- Section 7: Mini Challenge ---")
+    practice_guard_clauses("basic_user", True, 50)
+    practice_guard_clauses("premium_user", True, 100)
+    
+    score = calculate_score("Secure!Pass1")
+    print(f"Refactored password score: {score}/4")
+
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
+
+# - Match-case provides elegant ways to parse JSON/Dictionaries.
+# - Guard clauses significantly reduce nesting.
+# - Complex nested logic is a code smell that often requires refactoring.
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- Decision Making Practice ---
-# Welcome admin
-# Shipping: 0
-# Good
-# End Expected Output
+    practice_match_case()
+    practice_guard_clauses("admin", True, 500)
+    practice_complex_nesting()
+    mini_challenge()

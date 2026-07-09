@@ -1,61 +1,132 @@
-"""Learning file for String Practice Programs."""
+"""
+Topic: General String Practice
+Chapter: 8
+Level: Intermediate
 
-# Topic Name: String Practice Programs
-# Level: Beginner
-# String Practice Programs reinforces the chapter with runnable examples.
-# Read the theory first, then run this file and modify examples.
+Description:
+    A collection of common string manipulation problems to test understanding of string basics, slicing, methods, and formatting.
 
-# Theory
-# String Practice Programs reinforces the chapter with runnable examples.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    Like a driving test after learning the controls of a car. Now you have to combine steering, braking, and signaling to navigate a course.
 
-# Syntax
-# # See the runnable examples below for the topic syntax.
+Key Concepts:
+    - Reversing strings
+    - Palindromes
+    - Anagrams
+    - Vowel counting
+"""
 
-# Practice Programs
-# 1. Clean and normalize user names.
-# 2. Check whether a sentence is a palindrome after removing spaces.
-# 3. Count words and characters in text.
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
 
-# Mini Project
-# Build a tiny program that uses string practice programs
-# with realistic sample data, validation, and printed output.
+def reverse_string(s: str) -> str:
+    """Reverse a string using slicing."""
+    return s[::-1]
 
-# Interview Questions
-# Q1. Are strings mutable?
-# A1. No. String methods return new strings instead of changing the original.
-# Q2. What does slicing exclude?
-# A2. The stop index is excluded from the result.
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES
+# ============================================================
 
-# Examples and practice implementations start below.
-def is_palindrome(text):
-    cleaned = "".join(char.lower() for char in text if char.isalnum())
+def is_palindrome(s: str) -> bool:
+    """Check if a string reads the same forwards and backwards."""
+    # Clean string: remove spaces, lowercase
+    cleaned = s.replace(" ", "").lower()
     return cleaned == cleaned[::-1]
 
+def count_vowels(s: str) -> int:
+    """Count the number of vowels in a string."""
+    vowels = "aeiou"
+    count = 0
+    for char in s.lower():
+        if char in vowels:
+            count += 1
+    return count
 
-def count_words(sentence):
-    return len(sentence.split())
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
 
+def are_anagrams(s1: str, s2: str) -> bool:
+    """Check if two strings are anagrams of each other."""
+    # Clean and sort both strings
+    clean_s1 = sorted(s1.replace(" ", "").lower())
+    clean_s2 = sorted(s2.replace(" ", "").lower())
+    return clean_s1 == clean_s2
 
-def practice_initials(full_name):
-    return "".join(part[0].upper() for part in full_name.split())
+def run_length_encoding(s: str) -> str:
+    """Basic run length encoding compression (e.g., AAAABBB -> A4B3)."""
+    if not s:
+        return ""
+    
+    encoded = []
+    count = 1
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1]:
+            count += 1
+        else:
+            encoded.append(f"{s[i - 1]}{count}")
+            count = 1
+    encoded.append(f"{s[-1]}{count}")
+    return "".join(encoded)
 
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
 
-def main():
-    print("--- String Practice Programs ---")
-    print("Madam palindrome:", is_palindrome("Madam"))
-    print("Word count:", count_words("Python is easy to read"))
-    print("Initials:", practice_initials("Asha Rao"))
+# Mistake: Forgetting to handle case sensitivity and spaces when checking palindromes or anagrams.
+# Best Practice: Normalize data (e.g., `.lower()`, `.strip()`) before processing strings.
 
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
+
+"""
+Q: How do you check if a string is a palindrome in Python?
+A: `return s == s[::-1]`
+
+Q: What is the time complexity of reversing a string using slicing?
+A: O(N), where N is the length of the string.
+
+Q: How can you reverse the words in a sentence, not the letters?
+A: `sentence.split()`, reverse the list, then `' '.join()` it. `return ' '.join(sentence.split()[::-1])`
+"""
+
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
+
+# 1. Write a function to capitalize the first letter of every word (without using `.title()`).
+# 2. Write a function to find the most frequent character in a string.
+# 3. Write a function to remove duplicate characters from a string while preserving order.
+
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
+
+def reverse_words_in_sentence(sentence: str) -> str:
+    """Reverse words in a sentence."""
+    words = sentence.split()
+    return " ".join(words[::-1])
+
+def mini_challenge():
+    """Test all practice functions."""
+    print("Reversed 'hello':", reverse_string("hello"))
+    print("Is 'race car' palindrome?", is_palindrome("race car"))
+    print("Vowels in 'hello world':", count_vowels("hello world"))
+    print("Are 'listen' and 'silent' anagrams?", are_anagrams("listen", "silent"))
+    print("RLE of 'AABBBCCCC':", run_length_encoding("AABBBCCCC"))
+    print("Reversed sentence:", reverse_words_in_sentence("Python is fun"))
+
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
+
+"""
+- Slicing `[::-1]` is the pythonic way to reverse a string.
+- Normalizing string case is crucial for algorithms like Palindromes and Anagrams.
+- `join()` and `split()` work perfectly together for word-level manipulations.
+"""
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- String Practice Programs ---
-# Madam palindrome: True
-# Word count: 5
-# Initials: AR
-# End Expected Output
+    mini_challenge()

@@ -1,69 +1,143 @@
-"""Learning file for String Slicing."""
+"""
+Topic: String Slicing and Indexing
+Chapter: 8
+Level: Beginner
 
-# Topic Name: String Slicing
-# Level: Beginner
-# Slicing extracts substrings using start, stop, and step indexes.
-# Read the theory first, then run this file and modify examples.
+Description:
+    String slicing allows you to extract specific parts of a string by specifying a range of indices.
+    Indexing retrieves a single character from a string.
 
-# Theory
-# Slicing extracts substrings using start, stop, and step indexes.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    Imagine a train with numbered carriages. Indexing is picking a specific carriage.
+    Slicing is selecting a continuous sequence of carriages to form a shorter train.
 
-# Syntax
-# text[start:stop]
-# text[start:stop:step]
-# text[::-1]
+Key Concepts:
+    - Zero-based indexing
+    - Negative indexing
+    - Slicing syntax: [start:stop:step]
+    - Reversing strings
+"""
 
-# Practice Programs
-# 1. Clean and normalize user names.
-# 2. Check whether a sentence is a palindrome after removing spaces.
-# 3. Count words and characters in text.
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
 
-# Mini Project
-# Build a tiny program that uses string slicing
-# with realistic sample data, validation, and printed output.
+sample_text = "Python Programming"
 
-# Interview Questions
-# Q1. Are strings mutable?
-# A1. No. String methods return new strings instead of changing the original.
-# Q2. What does slicing exclude?
-# A2. The stop index is excluded from the result.
+def indexing_examples():
+    """Demonstrates accessing individual characters."""
+    first_char = sample_text[0]
+    last_char = sample_text[-1]
+    print(f"First character: {first_char}")
+    print(f"Last character: {last_char}")
 
-# Examples and practice implementations start below.
-def example_basic_slices():
-    text = "Python"
-    print("first three:", text[:3])
-    print("last two:", text[-2:])
-    print("reverse:", text[::-1])
+def slicing_basics():
+    """Demonstrates basic slicing."""
+    first_word = sample_text[0:6]
+    print(f"First word: {first_word}")
+    
+    # Omitting start defaults to 0
+    same_first_word = sample_text[:6]
+    print(f"Omitting start: {same_first_word}")
+    
+    # Omitting stop defaults to end of string
+    second_word = sample_text[7:]
+    print(f"Second word: {second_word}")
 
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES
+# ============================================================
 
-def example_step_slice():
-    text = "abcdef"
-    print("Every second:", text[::2])
+def practical_slicing():
+    """Extracting data from fixed-format strings."""
+    date_str = "2023-10-15"
+    year = date_str[:4]
+    month = date_str[5:7]
+    day = date_str[8:]
+    print(f"Year: {year}, Month: {month}, Day: {day}")
 
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
 
-def practice_mask_email(email):
-    name, domain = email.split("@")
-    return name[:2] + "***@" + domain
+def advanced_slicing():
+    """Using the step parameter."""
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    # Every second character
+    every_second = alphabet[::2]
+    # Reversing a string
+    reversed_alpha = alphabet[::-1]
+    print(f"Every second char: {every_second}")
+    print(f"Reversed: {reversed_alpha}")
 
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
 
-def main():
-    print("--- String Slicing ---")
-    example_basic_slices()
-    example_step_slice()
-    print("Masked:", practice_mask_email("asha@example.com"))
+# Mistake: IndexError when accessing out-of-bounds index
+# char = sample_text[100]  # Raises IndexError
 
+# Best Practice: Slicing handles out-of-bounds gracefully.
+# slice_safe = sample_text[0:100] # Works fine without error, returns whole string
+
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
+
+"""
+Q: What happens if you specify a stop index larger than the string length in a slice?
+A: Python gracefully stops at the end of the string without raising an error.
+
+Q: How do you reverse a string using slicing?
+A: Using the slice `string[::-1]`.
+
+Q: What does a negative step in slicing do?
+A: It iterates through the string backwards.
+
+Q: Is `string[0]` the same as `string[0:1]`?
+A: Value-wise they are the same (both return a 1-character string), but `string[0]` can raise IndexError for an empty string, whereas `string[0:1]` returns an empty string.
+
+Q: Can you change a character using indexing, e.g., `s[0] = 'a'`?
+A: No, strings are immutable.
+"""
+
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
+
+# 1. Given the string "DataScience", extract the word "Data".
+# 2. Extract the word "Science" using negative indexing.
+# 3. Return every 3rd character from the string "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
+
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
+
+def mini_challenge(url: str):
+    """
+    Challenge: Extract the domain name from a URL format like "https://www.example.com"
+    """
+    # Assuming standard format
+    start = url.find("www.") + 4
+    end = url.find(".com")
+    domain = url[start:end]
+    print(f"Domain extracted: {domain}")
+
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
+
+"""
+- Strings are indexed starting from 0.
+- Negative indices count from the end (-1 is the last character).
+- Syntax for slicing is `[start:stop:step]`.
+- Start is inclusive, stop is exclusive.
+- Slicing out of bounds does not raise errors, but indexing does.
+"""
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- String Slicing ---
-# first three: Pyt
-# last two: on
-# reverse: nohtyP
-# Every second: ace
-# Masked: as***@example.com
-# End Expected Output
+    indexing_examples()
+    slicing_basics()
+    practical_slicing()
+    advanced_slicing()
+    mini_challenge("https://www.openai.com")

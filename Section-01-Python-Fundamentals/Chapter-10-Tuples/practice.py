@@ -1,62 +1,144 @@
-"""Learning file for Tuple Practice Programs."""
+"""
+Topic: Tuple Practice Exercises
+Chapter: 10
+Level: Intermediate
 
-# Topic Name: Tuple Practice Programs
-# Level: Beginner
-# Tuple Practice Programs reinforces the chapter with runnable examples.
-# Read the theory first, then run this file and modify examples.
+Description:
+    This file contains general practice problems covering all concepts of Python Tuples. 
+    It consolidates packing, unpacking, mutability concepts, methods, and real-world 
+    use cases into actionable exercises.
 
-# Theory
-# Tuple Practice Programs reinforces the chapter with runnable examples.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    This is like a workout circuit at the gym. You've learned how to use the different 
+    machines (packing, methods, named tuples); now you'll do a full-body circuit to 
+    ensure you know how to combine them effectively.
 
-# Syntax
-# # See the runnable examples below for the topic syntax.
+Key Concepts:
+    - Tuple manipulation
+    - Nested tuple iteration
+    - Data extraction
+    - Tuple generation
+"""
 
-# Practice Programs
-# 1. Return multiple values from a function using a tuple.
-# 2. Unpack coordinates into x and y variables.
-# 3. Count repeated values in a tuple.
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
 
-# Mini Project
-# Build a tiny program that uses tuple practice programs
-# with realistic sample data, validation, and printed output.
+def ex1_tuple_creation() -> None:
+    # TODO: Create a tuple with the numbers 1 to 5.
+    # TODO: Create a tuple with a single string "Solo".
+    # TODO: Print the types of both.
+    
+    # Solution:
+    numbers = (1, 2, 3, 4, 5)
+    solo = ("Solo",)
+    
+    print(f"Numbers: {type(numbers)}, Solo: {type(solo)}")
 
-# Interview Questions
-# Q1. Why use tuples?
-# A1. Use tuples for fixed-size records, immutable data, and multiple return values.
-# Q2. Can a tuple contain mutable objects?
-# A2. Yes. The tuple binding is immutable, but a contained mutable object can change.
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES
+# ============================================================
 
-# Examples and practice implementations start below.
-def coordinate_distance(point):
-    x, y = point
-    return (x ** 2 + y ** 2) ** 0.5
+def ex2_unpacking() -> None:
+    # TODO: Given the tuple below, unpack it into variables: name, year, and a list of roles.
+    data = ("Leonardo DiCaprio", 1974, "Actor", "Producer", "Environmentalist")
+    
+    # Solution:
+    name, year, *roles = data
+    print(f"Name: {name}")
+    print(f"Year: {year}")
+    print(f"Roles: {roles}")
 
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
 
-def swap_pair(pair):
-    left, right = pair
-    return right, left
+def ex3_nested_search() -> None:
+    # TODO: You have a tuple of tuples representing (ID, Username, Active_Status).
+    # Write a loop to extract and print only the Usernames of ACTIVE users.
+    users = (
+        (1, "alice", True),
+        (2, "bob", False),
+        (3, "charlie", True)
+    )
+    
+    # Solution:
+    print("Active Users:")
+    for user_id, username, is_active in users:
+        if is_active:
+            print(f"- {username}")
 
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
 
-def practice_student_tuple(name, marks):
-    return name, marks, "Pass" if marks >= 40 else "Fail"
+def ex4_modifying_safely() -> None:
+    # TODO: Tuples are immutable, but you need to add "Orange" to this tuple.
+    # Show the correct way to create a new tuple that includes "Orange" at the end.
+    fruits = ("Apple", "Banana", "Cherry")
+    
+    # Solution:
+    fruits = fruits + ("Orange",)
+    print(f"Updated fruits: {fruits}")
 
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
+"""
+(Self-Test for the student based on practice)
+Q1: Can I use `del fruits[0]` to remove "Apple"?
+A: No, tuples do not support item deletion. You must create a new tuple omitting the item.
 
-def main():
-    print("--- Tuple Practice Programs ---")
-    print("Distance:", round(coordinate_distance((3, 4)), 2))
-    print("Swap:", swap_pair(("left", "right")))
-    print("Student:", practice_student_tuple("Asha", 88))
+Q2: How do you convert a list to a tuple and vice versa?
+A: Using the `tuple(my_list)` and `list(my_tuple)` constructors.
+"""
 
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
+def ex5_list_to_tuple_conversion() -> None:
+    """
+    Given a list of strings, convert it to a tuple. Then find the index of "Python".
+    """
+    languages = ["C++", "Java", "Python", "Rust"]
+    
+    # Solution:
+    lang_tuple = tuple(languages)
+    idx = lang_tuple.index("Python")
+    print(f"Python is at index {idx} in the tuple {lang_tuple}")
+
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
+def mini_challenge() -> None:
+    """
+    Challenge: Write a function `sort_by_last_element(tuples_list)` that takes a list 
+    of tuples and returns a new list sorted by the last element of each tuple.
+    Example Input: [(1, 7), (1, 3), (3, 4, 5), (2, 2)]
+    Expected Output: [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
+    """
+    def sort_by_last_element(tuples_list: list) -> list:
+        # Sort based on the last element `t[-1]`
+        return sorted(tuples_list, key=lambda t: t[-1])
+        
+    sample = [(1, 7), (1, 3), (3, 4, 5), (2, 2)]
+    result = sort_by_last_element(sample)
+    print(f"Sorted list of tuples: {result}")
+
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
+"""
+- Unpacking with `*` handles variable-length data gracefully.
+- Iterating over tuple collections allows fast multi-variable extraction.
+- Converting between lists and tuples is common when you need temporary mutability.
+- Tuples can be sorted using `sorted()` and custom `key` functions.
+"""
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- Tuple Practice Programs ---
-# Distance: 5.0
-# Swap: ('right', 'left')
-# Student: ('Asha', 88, 'Pass')
-# End Expected Output
+    ex1_tuple_creation()
+    ex2_unpacking()
+    ex3_nested_search()
+    ex4_modifying_safely()
+    ex5_list_to_tuple_conversion()
+    mini_challenge()
