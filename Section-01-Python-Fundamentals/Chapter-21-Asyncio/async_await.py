@@ -1,69 +1,143 @@
-"""Learning file for async and await."""
+"""
+Topic: Async and Await Keywords
+Chapter: 21
+Level: Beginner
 
-# Topic Name: async and await
-# Level: Advanced
-# async defines coroutines and await pauses them until awaited work is ready.
-# Read the theory first, then run this file and modify examples.
+Description:
+    The `async` and `await` keywords are the foundation of modern asynchronous programming in Python. `async` declares that a function is a coroutine, and `await` is used to pause the execution of that coroutine until a specified awaitable completes.
 
-# Theory
-# async defines coroutines and await pauses them until awaited work is ready.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    Imagine giving a presentation. `async` is the badge that says you are a presenter. `await` is when you ask the audience a question and pause your presentation, waiting for someone to answer before you continue speaking.
 
-# Syntax
-# async def fetch():
-#     await operation()
+Key Concepts:
+    - async def
+    - await expressions
+    - Awaitable objects (Coroutines, Tasks, Futures)
+    - Execution flow
+"""
 
-# Practice Programs
-# 1. Create coroutines for fake API calls.
-# 2. Run multiple tasks with gather.
-# 3. Build a small async status checker.
-
-# Mini Project
-# Build a tiny program that uses async and await
-# with realistic sample data, validation, and printed output.
-
-# Interview Questions
-# Q1. What is a coroutine?
-# A1. A function declared with async def that can pause with await.
-# Q2. When is asyncio useful?
-# A2. It is useful for many concurrent I/O tasks without creating many threads.
-
-# Examples and practice implementations start below.
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
 import asyncio
 
+# The 'async' keyword turns a regular function into a coroutine function.
+async def simple_greeter():
+    print("Hello")
+    # The 'await' keyword pauses simple_greeter until asyncio.sleep finishes.
+    # Control is handed back to the event loop.
+    await asyncio.sleep(1)
+    print("World")
+
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES
+# ============================================================
 
 async def fetch_user(user_id):
-    await asyncio.sleep(0.01)
-    return {"id": user_id, "name": "Asha"}
+    print(f"Fetching user {user_id} from database...")
+    await asyncio.sleep(0.5) # Simulate DB lookup
+    return {"id": user_id, "name": f"User_{user_id}"}
 
+async def fetch_user_posts(user_id):
+    print(f"Fetching posts for user {user_id}...")
+    await asyncio.sleep(0.8) # Simulate DB lookup
+    return ["Post 1", "Post 2"]
 
-async def example_async_await():
-    user = await fetch_user(1)
-    print("User:", user)
+async def display_user_dashboard(user_id):
+    # We must await the results because they are async functions
+    user = await fetch_user(user_id)
+    posts = await fetch_user_posts(user_id)
+    
+    print(f"\nDashboard for {user['name']}:")
+    for post in posts:
+        print(f"- {post}")
 
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
 
-async def practice_upper(text):
-    await asyncio.sleep(0.01)
-    return text.upper()
+# You can only use 'await' inside an 'async def' block.
+# However, you can create helper classes with `__await__` methods to make custom objects awaitable.
 
+class Delay:
+    def __init__(self, seconds):
+        self.seconds = seconds
+        
+    def __await__(self):
+        # We delegate the actual waiting to asyncio.sleep
+        return asyncio.sleep(self.seconds).__await__()
 
-async def main_async():
-    print("--- async and await ---")
-    await example_async_await()
-    print("Upper:", await practice_upper("python"))
+async def custom_awaitable_demo():
+    print("Wait for it...")
+    await Delay(2) # Using our custom awaitable
+    print("Done!")
 
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
 
-def main():
-    asyncio.run(main_async())
+# Mistakes:
+# - Using `await` outside of an `async` function (SyntaxError).
+# - Forgetting `await` when calling a coroutine. It returns a coroutine object instead of executing, causing silent failures.
+# - Awaiting a synchronous function (TypeError: object NoneType can't be used in 'await' expression).
 
+# Best Practices:
+# - Prefix async functions with `async_` if it helps your team distinguish them from sync functions, though IDEs usually highlight them.
+# - Ensure that any function performing I/O is asynchronous if you are writing an async application.
+
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
+
+# Q: What happens exactly when Python encounters the `await` keyword?
+# A: The current coroutine suspends its execution. Control is yielded back to the event loop, which will run other tasks until the awaited object is resolved.
+
+# Q: What is an "awaitable"?
+# A: Any object that can be used in an `await` expression. The main types are Coroutines, Tasks, and Futures.
+
+# Q: Can you use `await` in a regular Python shell (REPL)?
+# A: Yes, starting from Python 3.8, the standard REPL supports top-level `await` using `python -m asyncio`.
+
+# Q: What does a coroutine function return when called without `await`?
+# A: It returns a coroutine object.
+
+# Q: Can an `async` function contain zero `await` statements?
+# A: Yes, but it will execute synchronously and completely block the event loop until it finishes. It defeats the purpose of async.
+
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
+
+# Exercise 1: Write an async function that accepts a string, awaits 1 second, and returns the reversed string.
+# Exercise 2: Call the function from Exercise 1 without `await` and print the result. What do you see?
+# Exercise 3: Fix Exercise 2 by properly awaiting the function.
+
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
+
+# Challenge:
+# Create a sequence of 3 async functions:
+# A: returns 5 after 1 second.
+# B: takes a number, adds 10 after 1 second.
+# C: takes a number, multiplies by 2 after 1 second.
+# Write a main function that chains them together (A -> B -> C) using `await` and prints the final result.
+
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
+
+# - `async` marks a function as a coroutine.
+# - `await` suspends execution until the awaitable is complete.
+# - They must be used together; `await` is only valid inside `async def`.
+# - They enable writing asynchronous code that looks and behaves like synchronous code.
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- async and await ---
-# User: {'id': 1, 'name': 'Asha'}
-# Upper: PYTHON
-# End Expected Output
+    print("Running simple_greeter:")
+    asyncio.run(simple_greeter())
+    
+    print("\nRunning display_user_dashboard:")
+    asyncio.run(display_user_dashboard(101))
+    
+    print("\nRunning custom_awaitable_demo:")
+    asyncio.run(custom_awaitable_demo())

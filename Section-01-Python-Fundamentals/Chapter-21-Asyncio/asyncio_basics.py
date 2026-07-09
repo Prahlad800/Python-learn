@@ -1,69 +1,144 @@
-"""Learning file for asyncio Basics."""
+"""
+Topic: Asyncio Basics
+Chapter: 21
+Level: Beginner
 
-# Topic Name: asyncio Basics
-# Level: Advanced
-# asyncio runs concurrent I/O tasks on a single-threaded event loop.
-# Read the theory first, then run this file and modify examples.
+Description:
+    `asyncio` is a library to write concurrent code using the async/await syntax. It's designed to handle a large number of concurrent I/O-bound tasks using a single thread and an event loop.
 
-# Theory
-# asyncio runs concurrent I/O tasks on a single-threaded event loop.
-# Good Python code favors clear names, small functions, and
-# predictable behavior that can be tested.
+Real-Life Analogy:
+    Think of a single waiter in a restaurant. Instead of waiting for one table to finish eating before serving the next (synchronous), the waiter takes an order, goes to the kitchen, and while the food is cooking, takes orders from other tables. They juggle multiple tasks without being blocked by waiting.
 
-# Syntax
-# asyncio.run(main())
-# await asyncio.sleep(1)
+Key Concepts:
+    - Asynchronous programming
+    - `async` and `await` keywords
+    - The Event Loop
+    - Non-blocking I/O
+"""
 
-# Practice Programs
-# 1. Create coroutines for fake API calls.
-# 2. Run multiple tasks with gather.
-# 3. Build a small async status checker.
-
-# Mini Project
-# Build a tiny program that uses asyncio basics
-# with realistic sample data, validation, and printed output.
-
-# Interview Questions
-# Q1. What is a coroutine?
-# A1. A function declared with async def that can pause with await.
-# Q2. When is asyncio useful?
-# A2. It is useful for many concurrent I/O tasks without creating many threads.
-
-# Examples and practice implementations start below.
+# ============================================================
+# SECTION 1: BASIC SYNTAX AND INTRODUCTION
+# ============================================================
 import asyncio
+import time
 
+# To define an asynchronous function (coroutine), use the `async def` syntax.
+async def greet():
+    print("Hello...")
+    # `await` yields control back to the event loop while waiting for the operation to complete.
+    await asyncio.sleep(1) 
+    print("...World!")
 
-async def say_after(delay, message):
-    await asyncio.sleep(delay)
-    return message
+# ============================================================
+# SECTION 2: PRACTICAL EXAMPLES
+# ============================================================
 
+# Running multiple coroutines concurrently
+async def task_1():
+    print("Task 1 started")
+    await asyncio.sleep(2)
+    print("Task 1 finished")
+    return "Result 1"
 
-async def example_asyncio():
-    result = await say_after(0.01, "hello async")
-    print(result)
+async def task_2():
+    print("Task 2 started")
+    await asyncio.sleep(1)
+    print("Task 2 finished")
+    return "Result 2"
 
+async def main():
+    print(f"Main started at {time.strftime('%X')}")
+    
+    # asyncio.gather runs awaitables concurrently and waits for all of them
+    results = await asyncio.gather(
+        task_1(),
+        task_2()
+    )
+    
+    print(f"Main finished at {time.strftime('%X')}")
+    print(f"Results: {results}")
 
-async def practice_status():
-    await asyncio.sleep(0.01)
-    return "ready"
+# ============================================================
+# SECTION 3: ADVANCED USAGE
+# ============================================================
 
+# Handling timeouts with asyncio
+async def slow_operation():
+    await asyncio.sleep(3)
+    return "Done"
 
-async def main_async():
-    print("--- asyncio Basics ---")
-    await example_asyncio()
-    print("Status:", await practice_status())
+async def timeout_example():
+    try:
+        # We wait for maximum 1.5 seconds. If it takes longer, a TimeoutError is raised.
+        result = await asyncio.wait_for(slow_operation(), timeout=1.5)
+        print(result)
+    except asyncio.TimeoutError:
+        print("Operation timed out!")
 
+# ============================================================
+# SECTION 4: COMMON MISTAKES AND BEST PRACTICES
+# ============================================================
 
-def main():
-    asyncio.run(main_async())
+# Mistakes:
+# - Using blocking time.sleep() instead of await asyncio.sleep() in a coroutine. This blocks the whole event loop.
+# - Forgetting to use `await` when calling an `async def` function. It returns a coroutine object, but doesn't execute it.
 
+# Best Practices:
+# - Keep event loop iterations short.
+# - Use asyncio libraries for I/O (e.g., aiohttp for requests).
+# - Use `asyncio.run(main())` as the main entry point to your async application.
+
+# ============================================================
+# SECTION 5: INTERVIEW QUESTIONS
+# ============================================================
+
+# Q: What is the main difference between threading and asyncio?
+# A: Threading uses multiple OS threads (preemptive multitasking), while asyncio uses a single thread and cooperatively yields control via the event loop.
+
+# Q: What does `async def` do?
+# A: It defines a coroutine function. When called, it doesn't run the code but returns a coroutine object.
+
+# Q: Why shouldn't you use `time.sleep()` in an async function?
+# A: `time.sleep()` blocks the entire thread, halting the event loop. `asyncio.sleep()` only suspends the current coroutine, allowing the event loop to run other tasks.
+
+# Q: What is `asyncio.gather` used for?
+# A: It's used to run multiple awaitables concurrently and aggregate their results into a list.
+
+# Q: Can you mix synchronous and asynchronous code easily?
+# A: It requires care. You can run synchronous code in an executor (thread/process pool) using `loop.run_in_executor` to avoid blocking the event loop.
+
+# ============================================================
+# SECTION 6: PRACTICE EXERCISES
+# ============================================================
+
+# Exercise 1: Write an async function that counts from 1 to 5, waiting 0.5 seconds between each print.
+# Exercise 2: Create three async functions with different delays. Use gather to run them and print when all are done.
+# Exercise 3: Intentionally use time.sleep() in one task and observe how it affects another concurrent task.
+
+# ============================================================
+# SECTION 7: MINI CHALLENGE
+# ============================================================
+
+# Challenge:
+# Write a script that simulates downloading 5 files. Each download takes a random time between 1 and 3 seconds.
+# Start all downloads concurrently. Print when each finishes, and finally print the total time taken.
+
+# ============================================================
+# SECTION 8: SUMMARY
+# ============================================================
+
+# - Asyncio is Python's standard library for cooperative multitasking.
+# - `async` defines coroutines, and `await` yields control.
+# - `asyncio.run()` is used to start the event loop and run the top-level coroutine.
+# - It is highly efficient for heavy I/O-bound workloads.
 
 if __name__ == "__main__":
-    main()
-
-# Expected Output (sample):
-# Run this file with Python to reproduce the lesson output.
-# --- asyncio Basics ---
-# hello async
-# Status: ready
-# End Expected Output
+    # asyncio.run is the standard way to run an async main function in Python 3.7+
+    print("Running greet:")
+    asyncio.run(greet())
+    
+    print("\nRunning multiple tasks:")
+    asyncio.run(main())
+    
+    print("\nRunning timeout example:")
+    asyncio.run(timeout_example())
